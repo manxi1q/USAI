@@ -1,0 +1,136 @@
+{
+  "_comment": "Eagle Wire content file. Add a new object at the TOP of the articles array to publish. Required: id, section, kicker, headline, dek, author, desk, date, body (array of blocks). Optional: image, caption, lead (only one article should have lead:true).",
+  "breaking": [
+    "Appropriations package clears committee, heads to the floor Thursday",
+    "Filing window for the general election closes at the end of the week",
+    "Court schedules oral argument in the challenge to Directive 14",
+    "Secretary of State announces a deputy appointment pending confirmation"
+  ],
+  "docket": [
+    { "when": "Mon", "what": "Committee markup — appropriations" },
+    { "when": "Wed", "what": "Confirmation hearing, Department of State" },
+    { "when": "Thu", "what": "Floor session and recorded votes" },
+    { "when": "Fri", "what": "Candidate filing deadline" }
+  ],
+  "articles": [
+    {
+      "id": "appropriations-package-clears-committee",
+      "lead": true,
+      "section": "Capitol",
+      "kicker": "Capitol",
+      "headline": "Appropriations package clears committee after two nights of amendments",
+      "dek": "The measure survived eleven amendment votes and one attempt to send it back to subcommittee. It reaches the floor Thursday with its funding levels largely intact.",
+      "author": "R. Halloway",
+      "desk": "Capitol desk",
+      "date": "2026-08-27",
+      "caption": "The chamber during Wednesday's markup.",
+      "body": [
+        { "t": "p", "v": "The appropriations package cleared committee late Wednesday, ending two nights of amendment votes that trimmed the measure at the edges but left its central funding levels where its sponsors wrote them." },
+        { "t": "p", "v": "Members filed eleven amendments. Three were adopted, all of them technical. A fourth, which would have struck the transportation title entirely, failed on a voice vote that the chair declined to divide." },
+        { "t": "h2", "v": "What survived" },
+        { "t": "p", "v": "The transportation and infrastructure titles emerged unchanged. The general administration title lost a reporting requirement that its opponents called redundant and its author called the only enforcement in the bill." },
+        { "t": "quote", "v": "We wrote a number, we defended a number, and the number is still in the bill." },
+        { "t": "p", "v": "The ranking member disputed that reading, arguing that the reporting language mattered more than the dollar figures and that its removal leaves the committee without a way to check how the money is actually spent." },
+        { "t": "h2", "v": "What happens next" },
+        { "t": "p", "v": "The package is calendared for Thursday. Leadership has not said whether it will move under an open rule, which would allow floor amendments, or a closed one, which would not. Several members who voted the bill out of committee have said their support on the floor depends on the answer." }
+      ]
+    },
+    {
+      "id": "filing-window-closes-friday",
+      "section": "Elections",
+      "kicker": "Elections",
+      "headline": "Filing window closes Friday with several seats still uncontested",
+      "dek": "Party organisations spent the week recruiting for districts where nobody has filed. Once the window shuts, it does not reopen.",
+      "author": "M. Devereaux",
+      "desk": "Politics desk",
+      "date": "2026-08-26",
+      "body": [
+        { "t": "p", "v": "Candidate filing closes at the end of the week, and as of Thursday morning a number of seats had drawn a single name or none at all." },
+        { "t": "p", "v": "Both party organisations have spent the week making calls. An uncontested seat is a seat won on paper, and neither side wants to explain why it left one on the table." },
+        { "t": "h2", "v": "Where the gaps are" },
+        { "t": "p", "v": "The open seats cluster in districts where the outgoing member is not seeking another term. Recruiting into an open district is harder than defending one, because the newcomer starts without the name recognition the previous member spent a session building." },
+        { "t": "p", "v": "Members who file late also file without a campaign. There is no grace period afterward, and the election calendar does not move for anyone." }
+      ]
+    },
+    {
+      "id": "court-sets-argument-directive-14",
+      "section": "Courts",
+      "kicker": "Courts",
+      "headline": "Court sets argument in the challenge to Directive 14",
+      "dek": "The petition argues the directive exceeded the authority the enabling act granted. The government says the act says exactly what it needs it to say.",
+      "author": "A. Whitfield",
+      "desk": "Legal affairs",
+      "date": "2026-08-25",
+      "body": [
+        { "t": "p", "v": "The bench has docketed oral argument in the challenge to Directive 14, setting up the session's first serious test of how far an executive directive can go before it needs a statute behind it." },
+        { "t": "p", "v": "The petitioners argue the directive reaches past the authority its enabling act granted. The government's brief responds that the act is written broadly on purpose and that reading it narrowly would make it useless." },
+        { "t": "h2", "v": "Why it matters beyond this directive" },
+        { "t": "p", "v": "Whatever the court says about the scope of the enabling act will apply to every directive issued under it, not only this one. Several members have already said they will wait for the ruling before moving their own proposals." }
+      ]
+    },
+    {
+      "id": "deputy-appointment-sent-for-confirmation",
+      "section": "Executive",
+      "kicker": "Executive",
+      "headline": "Deputy appointment sent to committee for confirmation",
+      "dek": "The nomination goes to the oversight committee, which has rejected one appointment already this session.",
+      "author": "R. Halloway",
+      "desk": "Capitol desk",
+      "date": "2026-08-24",
+      "body": [
+        { "t": "p", "v": "The administration has forwarded a deputy-level appointment for confirmation, sending it to a committee that has already turned down one name this session." },
+        { "t": "p", "v": "Committee members said their questions would focus on procedure and familiarity with the department's existing obligations rather than on policy positions." },
+        { "t": "p", "v": "No hearing date has been announced. The committee is not required to schedule one, and appointments have quietly expired on its calendar before." }
+      ]
+    },
+    {
+      "id": "departments-file-three-week-reports",
+      "section": "Executive",
+      "kicker": "Executive",
+      "headline": "Departments file their three-week progress reports",
+      "dek": "Every executive department now owes the president and the public a signed report on a fixed cycle. The first round is in.",
+      "author": "S. Prentiss",
+      "desk": "Government desk",
+      "date": "2026-08-22",
+      "body": [
+        { "t": "p", "v": "The executive departments have filed the first round of progress reports required on a three-week cycle, each signed by its secretary and, where the office is filled, its deputy." },
+        { "t": "p", "v": "The requirement was designed to create a public record of what each department is actually doing between announcements. Its early critics called it paperwork; its author called it the difference between a department and a title." },
+        { "t": "h2", "v": "The pattern in the first round" },
+        { "t": "p", "v": "Departments with filled deputy posts filed longer reports. Departments without them filed on time anyway, which was the point of writing the exception into the requirement." }
+      ]
+    },
+    {
+      "id": "committee-rewrites-its-own-rules",
+      "section": "Capitol",
+      "kicker": "Capitol",
+      "headline": "Committee rewrites its own rules on witness questioning",
+      "dek": "The change caps opening statements and gives the ranking member equal time. It passed unanimously, which almost never happens here.",
+      "author": "M. Devereaux",
+      "desk": "Politics desk",
+      "date": "2026-08-20",
+      "body": [
+        { "t": "p", "v": "A committee that has spent the session divided on nearly everything agreed unanimously this week to rewrite how it questions witnesses." },
+        { "t": "p", "v": "The new rules cap opening statements, allocate questioning time in fixed rounds, and give the ranking member the same time as the chair. Members from both sides said the previous format rewarded whoever spoke longest rather than whoever asked best." },
+        { "t": "p", "v": "The rules take effect at the committee's next hearing." }
+      ]
+    },
+    {
+      "id": "what-a-recorded-vote-actually-means",
+      "section": "Explainers",
+      "kicker": "Explainer",
+      "headline": "What a recorded vote actually means, and why members fight over getting one",
+      "dek": "A voice vote disappears. A recorded vote follows you into the next campaign. That difference explains a lot of floor procedure.",
+      "author": "A. Whitfield",
+      "desk": "Legal affairs",
+      "date": "2026-08-18",
+      "body": [
+        { "t": "p", "v": "New members are often surprised by how much floor time gets spent arguing about how to vote rather than what to vote on. The reason is simple: some votes leave a record and some do not." },
+        { "t": "h2", "v": "Voice votes" },
+        { "t": "p", "v": "The chair asks for ayes and noes, listens, and rules. Nothing is written down about who said what. A member can support something quietly, or oppose it quietly, and nobody can prove either later." },
+        { "t": "h2", "v": "Recorded votes" },
+        { "t": "p", "v": "Every name and every position is written into the record. That record is permanent, public, and quotable — by the press, by an opponent, and by anyone reading the archive a year from now." },
+        { "t": "p", "v": "This is why a member who expects to lose will often demand a recorded vote anyway. Losing is temporary. Making the other side own the loss in writing is not." }
+      ]
+    }
+  ]
+}
