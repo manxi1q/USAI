@@ -1,0 +1,13 @@
+# Cloudflare Worker — static assets configuration
+# This is what makes /press.html, /wire/ and every other path work.
+# Without it the Worker only answers on / and everything else 404s.
+
+name = "usaideploy"
+compatibility_date = "2026-08-01"
+
+[assets]
+directory = "./"
+# Serve /press for /press.html, /wire/ for /wire/index.html
+html_handling = "auto-trailing-slash"
+# Anything unmatched returns the real 404 page instead of nothing
+not_found_handling = "404-page"

@@ -1,53 +1,72 @@
-# USAI | The American Ideal — website
+# USAI | The American Ideal — usamericanideal.com
 
-Static site. No build step, no dependencies. Push to GitHub, let Cloudflare
-Pages deploy it.
+Static site. No build step, no dependencies. All real links are already in
+place (Discord, Roblox community, wiki, domain) — nothing to replace.
+
+## ⚠️ Fixing the "only the homepage works" problem
+
+Your Worker serves `/` but 404s on everything else because it has no static
+assets configuration. `wrangler.toml` in this folder is the fix:
+
+```toml
+name = "usaideploy"
+compatibility_date = "2026-08-01"
+
+[assets]
+directory = "./"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
+```
+
+Commit it at the **root of the repository** and redeploy. `html_handling`
+is what makes `/press` resolve to `press.html` and `/wire/` resolve to
+`wire/index.html`. `not_found_handling` serves the styled `404.html`.
+
+If subpages still fail after that, the Worker deployment type is the problem,
+not the config — a Pages project is simpler for a site with no server-side
+code. Create one pointed at the same repo, build command empty, output
+directory `/`, then move the custom domain over to it.
+
+## Files
 
 ```
-index.html      Home — hero, Eagle Wire ticker, pillars, story, press, join
-about.html      The Ideal — history, institutions, session cycle, wiki
-press.html      Press corps — Eagle Wire live, four newsrooms in build
-roblox.html     Group, house rules, experiences with Play buttons
-join.html       Onboarding, roles, community standards (#conduct)
-styles.css      Façade styling (design tokens at the top)
-app.js          Mobile menu, scroll reveal, footer year
-assets/         emblem.svg, wire-mark.svg
+index.html        Home
+about.html        The Ideal — founding and story
+government.html   Institutions, procedure, offices
+press.html        Press corps — Eagle Wire live, four newsrooms in build
+roblox.html       Community, house rules, venues
+join.html         Onboarding, roles, community standards (#conduct)
+404.html          Styled not-found page
+styles.css        Façade styling (design tokens at the top)
+app.js            Mobile menu, scroll reveal, footer year
+assets/           usai-logo.png, usai-eagle.png, usai-banner.png, usai-hero.png
 
 wire/
   index.html      Eagle Wire front page
-  section.html    Section listing — section.html?name=Capitol
-  article.html    Article page — article.html?id=slug
+  section.html    section.html?name=Capitol
+  article.html    article.html?id=slug
   articles.json   ← ALL CONTENT LIVES HERE
-  wire.css        Newsroom styling
-  wire.js         Renderer
+  wire.css  wire.js
 
-_headers _redirects robots.txt sitemap.xml
+wrangler.toml  _headers  _redirects  robots.txt  sitemap.xml
 ```
 
-## Replace before going live
+## Design direction
 
-| Placeholder | Replace with |
-|---|---|
-| `https://discord.gg/YOUR-INVITE` | your permanent Discord invite |
-| `https://www.roblox.com/groups/0000000` | your Roblox group URL |
-| `https://www.roblox.com/games/000000000` | each experience URL (3 in roblox.html) |
-| `YOURDOMAIN.com` | your real domain |
+Modelled on whitehouse.gov: cream paper (`#F9F7F2`) as the dominant surface,
+navy (`#141B33`) reserved for the masthead, footer and a few feature panels,
+gold (`#C6A03A`) for hairlines, eyebrows and accents. The bright flag blue from
+the logo now appears only in the logo itself, which is what stops the site
+reading as "too blue".
 
-## Deploy on Cloudflare Pages
-
-1. Push this folder to a GitHub repository.
-2. Cloudflare → Workers & Pages → Create → Pages → Connect to Git.
-3. Build command: *(empty)* · Build output directory: `/`
-4. Add your domain under **Custom domains**.
-
-Eagle Wire will live at `yourdomain.com/wire/`. To move it to
-`wire.yourdomain.com` later, point a second Pages project at the `wire/`
-folder and update the links in the façade footer.
+Type: **Bodoni Moda** for headlines (the high-contrast didone that gives the WH
+site its voice), **Inter** for navigation, labels and decks, **Source Serif 4**
+for article body copy. Change the tokens in `:root` and both stylesheets follow.
 
 ## Publishing a story
 
-Open `wire/articles.json` and add an object at the **top** of the `articles`
-array. Only one article should carry `"lead": true`.
+Add an object at the **top** of the `articles` array in `wire/articles.json`.
+Only one article should carry `"lead": true`.
 
 ```json
 {
@@ -70,33 +89,23 @@ array. Only one article should carry `"lead": true`.
 }
 ```
 
-`section` must match one of the nav sections (Capitol, Executive, Courts,
-Elections, Explainers) for the story to appear on its section page. Without an
-`image`, a neutral placeholder is drawn — layout never breaks.
-
-The front page fills itself: lead story, three side stories, six grid stories,
-five latest filings. The breaking bar and the docket box come from the
-`breaking` and `docket` arrays at the top of the same file.
+`section` must match a nav section (Capitol, Executive, Courts, Elections,
+Explainers). Without an `image`, a neutral placeholder is drawn — the layout
+never breaks. The breaking bar and docket box come from the `breaking` and
+`docket` arrays at the top of the same file.
 
 ## Moving to a real backend later
 
-`wire.js` reads `articles.json` in one `fetch` at the top of the file. Point
-`DATA_URL` at a Supabase endpoint or a Cloudflare Worker returning the same
-JSON shape and every render function keeps working unchanged — same approach
-as the Weazel News admin panel.
-
-## Design tokens
-
-Both stylesheets share the same `:root` palette: white paper, federal blue
-`#0F3D91` / navy `#0A2A66`, gold `#B08D2E` with `#D8AE3F` as the lift. Change
-them there and the whole site follows.
+`wire.js` reads `articles.json` in a single `fetch` at the top of the file.
+Point `DATA_URL` at a Supabase endpoint or a Worker returning the same JSON
+shape and every render function keeps working — same approach as the Weazel
+News admin panel.
 
 ## Compliance notes
 
-- All outlet names and marks are original. No real broadcaster, newspaper or
-  wire service branding appears anywhere.
-- The emblem is an original design, not a reproduction of the Great Seal.
-- A fictional-simulation disclaimer sits in the top strip and footer of every
-  page, plus an end-note on every Eagle Wire article.
+- All outlet names are original. No real broadcaster, newspaper or wire service
+  branding appears anywhere on the site.
+- Fictional-simulation disclaimer in the top strip and footer of every page,
+  plus an end-note on every Eagle Wire article.
 - `join.html#conduct` bans real-world political advocacy, fundraising, mature
   content and sharing personal information.

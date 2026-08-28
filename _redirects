@@ -1,10 +1,3 @@
-# Clean URLs
-/about       /about.html    200
-/press       /press.html    200
-/roblox      /roblox.html   200
-/join        /join.html     200
-/wire        /wire/index.html  200
-
-# Shortcuts
-/discord     https://discord.gg/YOUR-INVITE            302
-/wiki        https://usai.miraheze.org/wiki/Main_Page  302
+/discord   https://discord.gg/USAI   302
+/wiki      https://usai.miraheze.org/wiki/Main_Page   302
+/roblox-group   https://www.roblox.com/communities/35400491/USAI-The-American-Ideal   302
