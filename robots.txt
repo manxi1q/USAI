@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /wire/admin.html
 
 Sitemap: https://usamericanideal.com/sitemap.xml

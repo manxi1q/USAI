@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Newsroom — Eagle Wire</title>
+<link rel="icon" href="../assets/usai-eagle.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F9F7F2; --cream-2:#F2EFE7; --white:#fff;
+  --navy:#141B33; --navy-deep:#0C1124; --rule:#DCD7C8; --hair:#E6E1D4;
+  --gold:#9A7B22; --gold-lift:#C6A03A; --green:#2F6B4F; --red:#8E2231;
+  --ink:#141B33; --ink-2:#454C63; --ink-3:#6F7590;
+  --ui:"Inter",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --display:"Bodoni Moda",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--gold);text-decoration:none}
+:focus-visible{outline:2px solid var(--gold-lift);outline-offset:2px}
+
+.bar{background:var(--navy);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar .mark{font-family:var(--display);font-size:26px;line-height:1}
+.bar .mark em{font-style:italic;color:var(--gold-lift)}
+.bar .tagline{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#8E9BBD;margin-left:4px}
+.bar .spacer{margin-left:auto}
+.bar .who{font-size:12px;color:#A9B4D2}
+.bar a{color:#C6CEE4;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.bar a:hover{color:#fff}
+
+.shell{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
+
+h1{font-family:var(--display);font-weight:500;font-size:34px;margin:0 0 6px}
+h2{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 14px;padding-bottom:9px;border-bottom:2px solid var(--navy)}
+.sub{color:var(--ink-3);margin:0 0 26px;font-size:14px}
+
+/* forms */
+label{display:block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+input[type=text],input[type=email],input[type=password],input[type=date],select,textarea{
+  width:100%;padding:11px 13px;border:1px solid var(--rule);background:var(--white);
+  font-family:var(--ui);font-size:15px;color:var(--ink);border-radius:0}
+textarea{resize:vertical;min-height:90px;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold-lift);box-shadow:0 0 0 3px rgba(198,160,58,.16)}
+.field{margin-bottom:18px}
+.row{display:grid;gap:16px}
+.row-2{grid-template-columns:1fr 1fr}
+.row-3{grid-template-columns:1fr 1fr 1fr}
+.hint{font-size:12px;color:var(--ink-3);margin-top:6px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1.5px solid transparent;
+  font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;background:none;transition:background-color .18s,color .18s,border-color .18s}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--gold)}
+.btn-gold{background:var(--gold-lift);color:var(--navy-deep)}
+.btn-gold:hover{background:#DDB94F}
+.btn-ghost{border-color:var(--rule);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--navy)}
+.btn-danger{border-color:var(--red);color:var(--red)}
+.btn-danger:hover{background:var(--red);color:#fff}
+.btn-sm{padding:7px 13px;font-size:11px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+.card{background:var(--white);border:1px solid var(--rule);padding:24px;margin-bottom:22px}
+.panel-note{background:var(--cream-2);border-left:3px solid var(--gold-lift);padding:14px 16px;font-size:13.5px;color:var(--ink-2);margin-bottom:22px}
+.panel-note code{font-family:var(--mono);font-size:12.5px;background:rgba(0,0,0,.05);padding:1px 5px}
+
+/* login */
+.login{max-width:400px;margin:70px auto;background:var(--white);border:1px solid var(--rule);padding:34px}
+.login h1{font-size:28px;text-align:center;margin-bottom:4px}
+.login .sub{text-align:center;margin-bottom:26px}
+
+/* list */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);padding:0 10px 10px;border-bottom:1px solid var(--rule)}
+td{padding:14px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.t-hed{font-family:var(--display);font-size:19px;font-weight:500;line-height:1.25;color:var(--navy);margin-bottom:4px}
+.t-meta{font-size:12px;color:var(--ink-3)}
+.pill{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:4px 9px;border:1px solid var(--rule);color:var(--ink-3);white-space:nowrap}
+.pill.pub{background:var(--green);border-color:var(--green);color:#fff}
+.pill.draft{background:var(--cream-2)}
+.pill.lead{background:var(--gold-lift);border-color:var(--gold-lift);color:var(--navy-deep);margin-left:6px}
+
+/* block editor */
+.blocks{display:grid;gap:12px;margin-bottom:14px}
+.blk{border:1px solid var(--rule);background:var(--cream-2);padding:14px}
+.blk-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.blk-top select{width:auto;padding:6px 10px;font-size:12px}
+.blk-top .grow{margin-left:auto;display:flex;gap:6px}
+.iconbtn{border:1px solid var(--rule);background:var(--white);width:30px;height:30px;cursor:pointer;font-size:14px;line-height:1;color:var(--ink-2)}
+.iconbtn:hover{border-color:var(--navy);color:var(--navy)}
+.blk textarea{background:var(--white);min-height:70px}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+  background:var(--navy);color:#fff;padding:13px 22px;font-size:13.5px;opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;z-index:200;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.toast.err{background:var(--red)}
+
+.hidden{display:none !important}
+.empty{padding:44px 20px;text-align:center;border:1px dashed var(--rule);color:var(--ink-3)}
+
+@media(max-width:760px){
+  .row-2,.row-3{grid-template-columns:1fr}
+  .hide-sm{display:none}
+  .shell{padding:20px 16px 60px}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="mark">Eagle <em>Wire</em></span>
+  <span class="tagline hide-sm">Newsroom</span>
+  <span class="spacer"></span>
+  <span class="who" id="who"></span>
+  <a href="index.html" target="_blank" rel="noopener noreferrer">View site &rarr;</a>
+  <a href="#" id="signout" class="hidden">Sign out</a>
+</div>
+
+<!-- ============================ SETUP NEEDED ============================ -->
+<div class="shell hidden" id="view-setup">
+  <div class="card">
+    <h1>Connect Supabase first</h1>
+    <p class="sub">The newsroom needs a database before it can do anything.</p>
+    <ol style="color:var(--ink-2);line-height:1.9;padding-left:20px">
+      <li>Create a project at <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">supabase.com</a>.</li>
+      <li>Open the SQL Editor and run <code style="font-family:var(--mono)">supabase-schema.sql</code> from this folder, top to bottom.</li>
+      <li>Go to Project Settings &rarr; API and copy the <strong>Project URL</strong> and the <strong>anon public</strong> key.</li>
+      <li>Paste both into <code style="font-family:var(--mono)">wire/config.js</code>, commit, and reload this page.</li>
+      <li>Create your login under Authentication &rarr; Users, then add yourself to the <code style="font-family:var(--mono)">staff</code> table (the SQL file ends with the exact command).</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ================================ LOGIN =============================== -->
+<div class="hidden" id="view-login">
+  <div class="login">
+    <h1>Newsroom</h1>
+    <p class="sub">Eagle Wire staff only</p>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" autocomplete="username">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password">
+    </div>
+    <button class="btn btn-navy" id="btn-login" style="width:100%;justify-content:center">Sign in</button>
+  </div>
+</div>
+
+<!-- ================================= LIST =============================== -->
+<div class="shell hidden" id="view-list">
+  <div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:26px">
+    <div>
+      <h1>Stories</h1>
+      <p class="sub" style="margin:0" id="list-count"></p>
+    </div>
+    <div class="actions" style="margin-left:auto">
+      <button class="btn btn-ghost btn-sm" id="btn-import">Import starter stories</button>
+      <button class="btn btn-gold" id="btn-new">New story</button>
+    </div>
+  </div>
+  <div class="card" style="padding:20px 14px">
+    <div id="list-host"></div>
+  </div>
+</div>
+
+<!-- ================================ EDITOR ============================== -->
+<div class="shell hidden" id="view-edit">
+  <div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+    <div>
+      <h1 id="edit-title">New story</h1>
+      <p class="sub" style="margin:0">Fields marked with a slug are what the URL uses.</p>
+    </div>
+    <div class="actions" style="margin-left:auto">
+      <button class="btn btn-ghost" id="btn-back">Back</button>
+      <button class="btn btn-navy" id="btn-save">Save draft</button>
+      <button class="btn btn-gold" id="btn-publish">Publish</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>The story</h2>
+    <div class="field">
+      <label for="f-headline">Headline</label>
+      <input type="text" id="f-headline" placeholder="Appropriations package clears committee">
+    </div>
+    <div class="field">
+      <label for="f-dek">Dek — the sentence under the headline</label>
+      <textarea id="f-dek" style="min-height:66px"></textarea>
+    </div>
+    <div class="row row-2">
+      <div class="field">
+        <label for="f-slug">Slug (URL)</label>
+        <input type="text" id="f-slug" placeholder="appropriations-package-clears-committee">
+        <p class="hint">Fills itself from the headline. Changing it breaks old links.</p>
+      </div>
+      <div class="field">
+        <label for="f-section">Section</label>
+        <select id="f-section">
+          <option>Capitol</option><option>Executive</option><option>Courts</option>
+          <option>Elections</option><option>Explainers</option>
+        </select>
+      </div>
+    </div>
+    <div class="row row-3">
+      <div class="field">
+        <label for="f-kicker">Kicker</label>
+        <input type="text" id="f-kicker" placeholder="Capitol">
+      </div>
+      <div class="field">
+        <label for="f-author">Byline</label>
+        <input type="text" id="f-author" placeholder="R. Halloway">
+      </div>
+      <div class="field">
+        <label for="f-desk">Desk</label>
+        <input type="text" id="f-desk" placeholder="Capitol desk">
+      </div>
+    </div>
+    <div class="field">
+      <label style="display:flex;align-items:center;gap:10px;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink)">
+        <input type="checkbox" id="f-lead" style="width:auto;margin:0">
+        Make this the lead story on the front page
+      </label>
+      <p class="hint">Only one story can be the lead. Setting this one clears the last.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Photo</h2>
+    <div class="row row-2">
+      <div class="field">
+        <label for="f-image">Image URL</label>
+        <input type="text" id="f-image" placeholder="https://…">
+        <p class="hint">Leave empty for the neutral placeholder — the layout never breaks.</p>
+      </div>
+      <div class="field">
+        <label for="f-upload">Or upload one</label>
+        <input type="file" id="f-upload" accept="image/*" style="padding:9px 0;border:0;background:none">
+        <p class="hint">Goes to the <code style="font-family:var(--mono)">wire-images</code> bucket.</p>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="f-caption">Caption</label>
+      <input type="text" id="f-caption">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Body</h2>
+    <div class="blocks" id="blocks"></div>
+    <div class="actions">
+      <button class="btn btn-ghost btn-sm" data-add="p">+ Paragraph</button>
+      <button class="btn btn-ghost btn-sm" data-add="h2">+ Subheading</button>
+      <button class="btn btn-ghost btn-sm" data-add="quote">+ Pull quote</button>
+      <button class="btn btn-ghost btn-sm" data-add="list">+ List</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-navy" id="btn-save-2">Save draft</button>
+    <button class="btn btn-gold" id="btn-publish-2">Publish</button>
+    <button class="btn btn-danger btn-sm" id="btn-delete" style="margin-left:auto">Delete story</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var CFG = window.WIRE_CONFIG || {};
+  var OUTLET = CFG.OUTLET || "eagle-wire";
+  var sb = null;
+  var current = null;      // the story being edited, null for a new one
+  var blocks = [];
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function show(view) {
+    ["view-setup", "view-login", "view-list", "view-edit"].forEach(function (v) {
+      $(v).classList.toggle("hidden", v !== view);
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function toast(msg, isError) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.toggle("err", Boolean(isError));
+    t.classList.add("show");
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function () { t.classList.remove("show"); }, 3400);
+  }
+
+  function slugify(s) {
+    return String(s).toLowerCase().trim()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  /* ------------------------------------------------------------ boot ----- */
+
+  if (!CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) {
+    show("view-setup");
+    return;
+  }
+
+  sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+
+  sb.auth.getSession().then(function (res) {
+    if (res.data.session) { afterLogin(); } else { show("view-login"); }
+  });
+
+  /* ----------------------------------------------------------- login ----- */
+
+  $("btn-login").addEventListener("click", function () {
+    var btn = this;
+    btn.disabled = true;
+    sb.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    }).then(function (res) {
+      btn.disabled = false;
+      if (res.error) { toast(res.error.message, true); return; }
+      afterLogin();
+    });
+  });
+
+  ["email", "password"].forEach(function (id) {
+    $(id).addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { $("btn-login").click(); }
+    });
+  });
+
+  $("signout").addEventListener("click", function (e) {
+    e.preventDefault();
+    sb.auth.signOut().then(function () { location.reload(); });
+  });
+
+  function afterLogin() {
+    sb.from("staff").select("byline,desk,role").maybeSingle().then(function (res) {
+      if (res.error || !res.data) {
+        toast("This account is not on the staff list yet.", true);
+        sb.auth.signOut().then(function () { show("view-login"); });
+        return;
+      }
+      $("who").textContent = (res.data.byline || "Staff") + " · " + res.data.role;
+      $("signout").classList.remove("hidden");
+      window._staff = res.data;
+      loadList();
+    });
+  }
+
+  /* ------------------------------------------------------------ list ----- */
+
+  function loadList() {
+    show("view-list");
+    $("list-host").innerHTML = '<div class="empty">Loading…</div>';
+
+    sb.from("articles")
+      .select("id,slug,section,kicker,headline,author,desk,status,is_lead,published_at,updated_at")
+      .eq("outlet", OUTLET)
+      .order("updated_at", { ascending: false })
+      .then(function (res) {
+        if (res.error) { $("list-host").innerHTML = '<div class="empty">' + esc(res.error.message) + "</div>"; return; }
+        var rows = res.data || [];
+        $("list-count").textContent = rows.length
+          ? rows.length + " stor" + (rows.length === 1 ? "y" : "ies") +
+            " · " + rows.filter(function (r) { return r.status === "published"; }).length + " published"
+          : "";
+        if (!rows.length) {
+          $("list-host").innerHTML = '<div class="empty"><p>No stories yet.</p></div>';
+          return;
+        }
+        $("list-host").innerHTML =
+          '<table><thead><tr><th>Story</th><th class="hide-sm">Section</th><th>Status</th><th></th></tr></thead><tbody>' +
+          rows.map(function (r) {
+            return "<tr>" +
+              '<td><div class="t-hed">' + esc(r.headline) + "</div>" +
+              '<div class="t-meta">' + esc(r.author) + (r.desk ? " · " + esc(r.desk) : "") + "</div></td>" +
+              '<td class="hide-sm"><span class="pill">' + esc(r.section) + "</span></td>" +
+              '<td><span class="pill ' + (r.status === "published" ? "pub" : "draft") + '">' + esc(r.status) + "</span>" +
+                (r.is_lead ? '<span class="pill lead">Lead</span>' : "") + "</td>" +
+              '<td style="text-align:right"><button class="btn btn-ghost btn-sm" data-edit="' + esc(r.id) + '">Edit</button></td>' +
+              "</tr>";
+          }).join("") +
+          "</tbody></table>";
+
+        $("list-host").querySelectorAll("[data-edit]").forEach(function (b) {
+          b.addEventListener("click", function () { openStory(b.getAttribute("data-edit")); });
+        });
+      });
+  }
+
+  $("btn-new").addEventListener("click", function () { openStory(null); });
+
+  /* ---------------------------------------------------------- editor ----- */
+
+  function renderBlocks() {
+    var host = $("blocks");
+    if (!blocks.length) {
+      host.innerHTML = '<div class="empty" style="padding:26px">No body yet — add a paragraph below.</div>';
+      return;
+    }
+    host.innerHTML = blocks.map(function (b, i) {
+      var val = b.t === "list" ? (b.v || []).join("\n") : (b.v || "");
+      var ph = b.t === "list" ? "One item per line" :
+               b.t === "h2" ? "Subheading" :
+               b.t === "quote" ? "A line worth pulling out" : "Write the paragraph…";
+      return '<div class="blk">' +
+        '<div class="blk-top">' +
+          '<select data-type="' + i + '">' +
+            ['p:Paragraph', 'h2:Subheading', 'quote:Pull quote', 'list:List'].map(function (o) {
+              var parts = o.split(":");
+              return '<option value="' + parts[0] + '"' + (b.t === parts[0] ? " selected" : "") + ">" + parts[1] + "</option>";
+            }).join("") +
+          "</select>" +
+          '<div class="grow">' +
+            '<button class="iconbtn" data-up="' + i + '" title="Move up">&uarr;</button>' +
+            '<button class="iconbtn" data-down="' + i + '" title="Move down">&darr;</button>' +
+            '<button class="iconbtn" data-del="' + i + '" title="Remove">&times;</button>' +
+          "</div>" +
+        "</div>" +
+        '<textarea data-val="' + i + '" placeholder="' + ph + '">' + esc(val) + "</textarea>" +
+      "</div>";
+    }).join("");
+
+    host.querySelectorAll("[data-val]").forEach(function (t) {
+      t.addEventListener("input", function () {
+        var i = +t.getAttribute("data-val");
+        blocks[i].v = blocks[i].t === "list"
+          ? t.value.split("\n").filter(function (x) { return x.trim(); })
+          : t.value;
+      });
+    });
+    host.querySelectorAll("[data-type]").forEach(function (s) {
+      s.addEventListener("change", function () {
+        var i = +s.getAttribute("data-type");
+        var was = blocks[i].v;
+        blocks[i].t = s.value;
+        blocks[i].v = s.value === "list"
+          ? (Array.isArray(was) ? was : String(was || "").split("\n").filter(Boolean))
+          : (Array.isArray(was) ? was.join("\n") : was);
+        renderBlocks();
+      });
+    });
+    host.querySelectorAll("[data-up]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var i = +b.getAttribute("data-up");
+        if (i > 0) { var t = blocks[i - 1]; blocks[i - 1] = blocks[i]; blocks[i] = t; renderBlocks(); }
+      });
+    });
+    host.querySelectorAll("[data-down]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var i = +b.getAttribute("data-down");
+        if (i < blocks.length - 1) { var t = blocks[i + 1]; blocks[i + 1] = blocks[i]; blocks[i] = t; renderBlocks(); }
+      });
+    });
+    host.querySelectorAll("[data-del]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        blocks.splice(+b.getAttribute("data-del"), 1);
+        renderBlocks();
+      });
+    });
+  }
+
+  document.querySelectorAll("[data-add]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = b.getAttribute("data-add");
+      blocks.push({ t: t, v: t === "list" ? [] : "" });
+      renderBlocks();
+    });
+  });
+
+  function openStory(id) {
+    show("view-edit");
+    $("btn-delete").classList.toggle("hidden", !id);
+
+    if (!id) {
+      current = null;
+      $("edit-title").textContent = "New story";
+      ["f-headline", "f-dek", "f-slug", "f-kicker", "f-image", "f-caption"].forEach(function (f) { $(f).value = ""; });
+      $("f-section").value = "Capitol";
+      $("f-author").value = (window._staff && window._staff.byline) || "";
+      $("f-desk").value = (window._staff && window._staff.desk) || "";
+      $("f-lead").checked = false;
+      blocks = [{ t: "p", v: "" }];
+      renderBlocks();
+      return;
+    }
+
+    sb.from("articles").select("*").eq("id", id).single().then(function (res) {
+      if (res.error) { toast(res.error.message, true); return; }
+      var a = res.data;
+      current = a;
+      $("edit-title").textContent = "Edit story";
+      $("f-headline").value = a.headline || "";
+      $("f-dek").value = a.dek || "";
+      $("f-slug").value = a.slug || "";
+      $("f-section").value = a.section || "Capitol";
+      $("f-kicker").value = a.kicker || "";
+      $("f-author").value = a.author || "";
+      $("f-desk").value = a.desk || "";
+      $("f-image").value = a.image_url || "";
+      $("f-caption").value = a.caption || "";
+      $("f-lead").checked = Boolean(a.is_lead);
+      blocks = Array.isArray(a.body) && a.body.length ? a.body.slice() : [{ t: "p", v: "" }];
+      renderBlocks();
+    });
+  }
+
+  // slug follows the headline until the story exists
+  $("f-headline").addEventListener("input", function () {
+    if (!current) { $("f-slug").value = slugify(this.value); }
+    if (!$("f-kicker").value) { $("f-kicker").value = $("f-section").value; }
+  });
+
+  $("btn-back").addEventListener("click", loadList);
+
+  function collect(status) {
+    var headline = $("f-headline").value.trim();
+    var slug = ($("f-slug").value.trim() || slugify(headline));
+    if (!headline) { toast("The story needs a headline.", true); return null; }
+    if (!slug) { toast("The story needs a slug.", true); return null; }
+    if (!$("f-author").value.trim()) { toast("The story needs a byline.", true); return null; }
+
+    return {
+      slug: slug,
+      outlet: OUTLET,
+      section: $("f-section").value,
+      kicker: $("f-kicker").value.trim() || $("f-section").value,
+      headline: headline,
+      dek: $("f-dek").value.trim(),
+      author: $("f-author").value.trim(),
+      desk: $("f-desk").value.trim(),
+      image_url: $("f-image").value.trim() || null,
+      caption: $("f-caption").value.trim() || null,
+      body: blocks.filter(function (b) {
+        return b.t === "list" ? (b.v || []).length : String(b.v || "").trim();
+      }),
+      is_lead: $("f-lead").checked,
+      status: status
+    };
+  }
+
+  function save(status) {
+    var payload = collect(status);
+    if (!payload) { return; }
+
+    var q = current
+      ? sb.from("articles").update(payload).eq("id", current.id).select().single()
+      : sb.from("articles").insert(payload).select().single();
+
+    q.then(function (res) {
+      if (res.error) {
+        toast(res.error.message.indexOf("duplicate") > -1
+          ? "That slug is already used by another story."
+          : res.error.message, true);
+        return;
+      }
+      current = res.data;
+      $("edit-title").textContent = "Edit story";
+      $("btn-delete").classList.remove("hidden");
+      toast(status === "published" ? "Published." : "Draft saved.");
+    });
+  }
+
+  ["btn-save", "btn-save-2"].forEach(function (id) {
+    $(id).addEventListener("click", function () { save("draft"); });
+  });
+  ["btn-publish", "btn-publish-2"].forEach(function (id) {
+    $(id).addEventListener("click", function () { save("published"); });
+  });
+
+  $("btn-delete").addEventListener("click", function () {
+    if (!current) { return; }
+    if (!confirm("Delete this story permanently? This cannot be undone.")) { return; }
+    sb.from("articles").delete().eq("id", current.id).then(function (res) {
+      if (res.error) { toast(res.error.message, true); return; }
+      toast("Story deleted.");
+      loadList();
+    });
+  });
+
+  /* ------------------------------------------------------- image upload -- */
+
+  $("f-upload").addEventListener("change", function () {
+    var file = this.files && this.files[0];
+    if (!file) { return; }
+    var name = Date.now() + "-" + slugify(file.name.replace(/\.[^.]+$/, "")) +
+               "." + (file.name.split(".").pop() || "jpg");
+    toast("Uploading…");
+    sb.storage.from("wire-images").upload(name, file, { cacheControl: "31536000", upsert: false })
+      .then(function (res) {
+        if (res.error) { toast(res.error.message, true); return; }
+        var pub = sb.storage.from("wire-images").getPublicUrl(name);
+        $("f-image").value = pub.data.publicUrl;
+        toast("Image uploaded.");
+      });
+  });
+
+  /* ------------------------------------------------------------ import -- */
+
+  $("btn-import").addEventListener("click", function () {
+    var btn = this;
+    btn.disabled = true;
+    fetch("articles.json").then(function (r) { return r.json(); }).then(function (data) {
+      var rows = (data.articles || []).map(function (a) {
+        return {
+          slug: a.id, outlet: OUTLET, section: a.section, kicker: a.kicker,
+          headline: a.headline, dek: a.dek, author: a.author, desk: a.desk,
+          image_url: a.image || null, caption: a.caption || null,
+          body: a.body || [], is_lead: Boolean(a.lead),
+          status: "published", published_at: new Date(a.date + "T12:00:00").toISOString()
+        };
+      });
+      return sb.from("articles").upsert(rows, { onConflict: "slug" });
+    }).then(function (res) {
+      btn.disabled = false;
+      if (res.error) { toast(res.error.message, true); return; }
+      toast("Starter stories imported.");
+      loadList();
+    }).catch(function (e) {
+      btn.disabled = false;
+      toast(String(e.message || e), true);
+    });
+  });
+})();
+</script>
+</body>
+</html>

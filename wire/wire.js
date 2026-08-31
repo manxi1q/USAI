@@ -1,15 +1,13 @@
 /* ==========================================================================
    EAGLE WIRE — front-end renderer
-   Reads articles.json and builds the front page, the section pages and the
-   article pages. Swap loadData() for a Supabase or Worker fetch later; every
-   render function below expects the same shape.
+   Reads from Supabase when config.js is filled in, otherwise articles.json.
+   Both paths produce the same article shape.
    ========================================================================== */
 (function () {
   "use strict";
 
-  var DATA_URL = "articles.json";
-
-  /* ---------- helpers ---------------------------------------------------- */
+  var CFG = window.WIRE_CONFIG || {};
+  var USE_SUPABASE = Boolean(CFG.SUPABASE_URL && CFG.SUPABASE_ANON_KEY);
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -18,7 +16,8 @@
   }
 
   function fmtDate(iso) {
-    var d = new Date(iso + "T12:00:00");
+    if (!iso) { return ""; }
+    var d = new Date(String(iso).length <= 10 ? iso + "T12:00:00" : iso);
     if (isNaN(d)) { return esc(iso); }
     return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   }
@@ -26,15 +25,15 @@
   function href(a) { return "article.html?id=" + encodeURIComponent(a.id); }
 
   function thumb(a) {
-    if (a.image) {
-      return '<div class="ew-thumb"><img src="' + esc(a.image) + '" alt=""></div>';
-    }
-    return '<div class="ew-thumb" aria-hidden="true">Eagle Wire</div>';
+    return a.image
+      ? '<div class="ew-thumb"><img src="' + esc(a.image) + '" alt="" loading="lazy"></div>'
+      : '<div class="ew-thumb" aria-hidden="true">Eagle Wire</div>';
   }
 
   function byline(a) {
-    return '<div class="ew-byline"><b>' + esc(a.author) + '</b> &middot; ' +
-           esc(a.desk) + ' &middot; ' + fmtDate(a.date) + "</div>";
+    return '<div class="ew-byline"><b>' + esc(a.author) + "</b>" +
+      (a.desk ? " &middot; " + esc(a.desk) : "") +
+      " &middot; " + fmtDate(a.date) + "</div>";
   }
 
   function card(a, withThumb) {
@@ -46,7 +45,51 @@
       byline(a) + "</a></article>";
   }
 
-  /* ---------- front page ------------------------------------------------- */
+  /* ---------- data ------------------------------------------------------- */
+
+  function fromRow(r) {
+    return {
+      id: r.slug, section: r.section, kicker: r.kicker, headline: r.headline,
+      dek: r.dek, author: r.author, desk: r.desk,
+      date: r.published_at || r.created_at,
+      image: r.image_url, caption: r.caption,
+      body: r.body || [], lead: r.is_lead
+    };
+  }
+
+  function loadSupabase() {
+    var url = CFG.SUPABASE_URL.replace(/\/+$/, "") + "/rest/v1/articles" +
+      "?select=slug,section,kicker,headline,dek,author,desk,image_url,caption,body,is_lead,published_at,created_at" +
+      "&outlet=eq." + encodeURIComponent(CFG.OUTLET || "eagle-wire") +
+      "&status=eq.published&order=published_at.desc";
+
+    return fetch(url, {
+      headers: { apikey: CFG.SUPABASE_ANON_KEY, Authorization: "Bearer " + CFG.SUPABASE_ANON_KEY }
+    }).then(function (r) {
+      if (!r.ok) { throw new Error("Supabase " + r.status); }
+      return r.json();
+    }).then(function (rows) {
+      return {
+        articles: rows.map(fromRow),
+        breaking: rows.slice(0, 5).map(function (r) { return r.headline; }),
+        docket: null
+      };
+    });
+  }
+
+  function loadJson() {
+    return fetch("articles.json", { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) { throw new Error("HTTP " + r.status); }
+      return r.json();
+    });
+  }
+
+  function loadData() {
+    if (!USE_SUPABASE) { return loadJson(); }
+    return loadSupabase().catch(function () { return loadJson(); });
+  }
+
+  /* ---------- renderers -------------------------------------------------- */
 
   function renderFront(data) {
     var arts = data.articles || [];
@@ -62,31 +105,25 @@
           thumb(lead) +
           '<span class="ew-kicker red">' + esc(lead.kicker) + "</span>" +
           '<h2 class="ew-hed">' + esc(lead.headline) + "</h2>" +
-          '<p class="ew-dek">' + esc(lead.dek) + "</p>" +
-          byline(lead) +
+          '<p class="ew-dek">' + esc(lead.dek) + "</p>" + byline(lead) +
         "</a></article></div>" +
         '<div class="ew-lead-side">' +
-          rest.slice(0, 3).map(function (a) { return card(a, false); }).join("") +
-        "</div>";
+          rest.slice(0, 3).map(function (a) { return card(a, false); }).join("") + "</div>";
     }
 
     var gridEl = document.getElementById("ew-grid");
-    if (gridEl) {
-      gridEl.innerHTML = rest.slice(3, 9).map(function (a) { return card(a, true); }).join("");
-    }
+    if (gridEl) { gridEl.innerHTML = rest.slice(3, 9).map(function (a) { return card(a, true); }).join(""); }
 
     var latestEl = document.getElementById("ew-latest");
     if (latestEl) {
       latestEl.innerHTML = arts.slice(0, 5).map(function (a, i) {
-        return '<div class="ew-list-item">' +
-          '<span class="ew-rank">' + (i + 1) + "</span>" +
+        return '<div class="ew-list-item"><span class="ew-rank">' + (i + 1) + "</span>" +
           '<a href="' + href(a) + '"><h3 class="ew-hed">' + esc(a.headline) + "</h3>" +
-          '<div class="ew-byline">' + esc(a.desk) + " &middot; " + fmtDate(a.date) + "</div></a></div>";
+          '<div class="ew-byline">' + esc(a.desk || a.section) + " &middot; " + fmtDate(a.date) +
+          "</div></a></div>";
       }).join("");
     }
   }
-
-  /* ---------- section page ----------------------------------------------- */
 
   function renderSection(data) {
     var gridEl = document.getElementById("ew-section-grid");
@@ -111,8 +148,6 @@
     }
     gridEl.innerHTML = arts.map(function (a) { return card(a, true); }).join("");
   }
-
-  /* ---------- article page ----------------------------------------------- */
 
   function block(b) {
     if (b.t === "h2")    { return "<h2>" + esc(b.v) + "</h2>"; }
@@ -157,8 +192,6 @@
         "events described above are fictional and no part of this report describes real news.</div>";
   }
 
-  /* ---------- shared furniture ------------------------------------------- */
-
   function renderFurniture(data) {
     var bar = document.getElementById("ew-breaking");
     if (bar && data.breaking && data.breaking.length) {
@@ -170,20 +203,16 @@
     }
 
     var dock = document.getElementById("ew-docket");
-    if (dock && data.docket) {
+    if (dock && data.docket && data.docket.length) {
       dock.innerHTML = data.docket.map(function (d) {
         return '<div class="ew-docket-row"><time>' + esc(d.when) + "</time><span>" + esc(d.what) + "</span></div>";
       }).join("");
+    } else if (dock && dock.closest(".ew-box")) {
+      dock.closest(".ew-box").style.display = "none";
     }
   }
 
-  /* ---------- boot -------------------------------------------------------- */
-
-  fetch(DATA_URL, { cache: "no-cache" })
-    .then(function (r) {
-      if (!r.ok) { throw new Error("HTTP " + r.status); }
-      return r.json();
-    })
+  loadData()
     .then(function (data) {
       renderFurniture(data);
       renderFront(data);

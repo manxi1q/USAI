@@ -285,3 +285,85 @@ strong { font-weight: 600; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   Full-bleed photography
+   ========================================================================== */
+
+.bleed { width: 100%; }
+
+/* One edge-to-edge image with the caption over it */
+.showcase {
+  position: relative; width: 100%;
+  min-height: clamp(360px, 52vw, 620px);
+  display: flex; align-items: flex-end;
+  overflow: hidden; background: var(--navy);
+}
+.showcase img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transform: scale(1.02); transition: transform 1.1s cubic-bezier(.2,.7,.3,1);
+}
+.showcase:hover img { transform: scale(1.06); }
+.showcase::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,17,36,.15) 0%, rgba(12,17,36,.28) 42%, rgba(12,17,36,.88) 100%);
+}
+.showcase-body { position: relative; z-index: 2; width: 100%; padding-block: clamp(34px, 5vw, 64px); }
+.showcase-body h2, .showcase-body h3 { color: #fff; }
+.showcase-body p { color: #DCE2F2; max-width: 56ch; margin-bottom: 0; }
+.showcase-body .eyebrow { color: var(--gold-lift); }
+.showcase-body .eyebrow::after { background: rgba(255,255,255,.3); }
+
+/* Grid of images, caption revealed over each on hover */
+.plates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.plates.two { grid-template-columns: repeat(2, 1fr); }
+.plate {
+  position: relative; overflow: hidden; background: var(--navy);
+  min-height: clamp(240px, 26vw, 380px);
+  display: flex; align-items: flex-end;
+}
+.plate img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: transform 1s cubic-bezier(.2,.7,.3,1), filter .5s ease;
+}
+.plate::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,17,36,0) 30%, rgba(12,17,36,.86) 100%);
+  transition: background .45s ease;
+}
+.plate:hover img, .plate:focus-within img { transform: scale(1.07); }
+.plate:hover::after, .plate:focus-within::after {
+  background: linear-gradient(180deg, rgba(12,17,36,.28) 0%, rgba(12,17,36,.92) 100%);
+}
+.plate-body { position: relative; z-index: 2; padding: clamp(20px, 2.4vw, 32px); width: 100%; }
+.plate-body .tag {
+  display: block; font-family: var(--ui); font-size: 10px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--gold-lift); margin-bottom: 8px;
+}
+.plate-body h3 { color: #fff; font-size: clamp(20px, 1.8vw, 26px); margin-bottom: 0; }
+.plate-body p {
+  color: #C9D2E8; font-family: var(--ui); font-size: 14.5px; line-height: 1.55;
+  margin: 10px 0 0; max-width: 40ch;
+  opacity: 0; max-height: 0; transform: translateY(8px);
+  transition: opacity .4s ease, max-height .5s ease, transform .4s ease;
+}
+.plate:hover .plate-body p, .plate:focus-within .plate-body p {
+  opacity: 1; max-height: 160px; transform: none;
+}
+
+/* Small print note — replaces the oversized disclaimer panel */
+.smallprint {
+  font-family: var(--ui); font-size: 12.5px; line-height: 1.65; color: var(--ink-3);
+  border-top: 1px solid var(--rule); padding-top: 18px; margin-top: 8px;
+}
+.smallprint strong { color: var(--ink-2); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .plates, .plates.two { grid-template-columns: 1fr; }
+  .plate-body p { opacity: 1; max-height: 160px; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase img, .plate img { transition: none; }
+  .showcase:hover img, .plate:hover img { transform: none; }
+}
